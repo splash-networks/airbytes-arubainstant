@@ -3,10 +3,9 @@
 require 'header.php';
 include 'config.php';
 
-$_SESSION["mac"] = $_POST['mac'];
-$_SESSION["ip"] = $_POST['ip'];
-$_SESSION["link-login"] = $_POST['link-login'];
-$_SESSION["link-login-only"] = $_POST['link-login-only'];
+$_SESSION["mac"] = $_GET["mac"];
+$_SESSION["ip"] = $_GET["ip"];
+$_SESSION["url"] = "http://securelogin.arubanetworks.com/cgi-bin/login";
 
 $_SESSION["user_type"] = "new";
 

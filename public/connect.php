@@ -5,14 +5,9 @@ include 'config.php';
 
 $mac = $_SESSION["mac"];
 $ip = $_SESSION["ip"];
-$link_login = $_SESSION["link-login"];
-$link_login_only = $_SESSION["link-login-only"];
-$linkorig = "https://hotspot.uk.connect.airbytes.net/thanks.php";
-
+$url = $_SESSION['url'];
 
 $last_updated = date("Y-m-d H:i:s");
-
-$username="admin";
 
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
@@ -71,31 +66,22 @@ mysqli_close($con);
 
 </div>
 
-<script type="text/javascript" src="./md5.js"></script>
 <script type="text/javascript">
-    function doLogin() {
-        document.sendin.username.value = document.login.username.value;
-        document.sendin.password.value = hexMD5('\011\373\054\364\002\233\266\263\270\373\173\323\234\313\365\337\356');
-        document.sendin.submit();
-        return false;
-    }
-</script>
-<script type="text/javascript">
-    function formAutoSubmit () {
-        var frm = document.getElementById("login");
-        document.getElementById("login").submit();
-        frm.submit();
-    }
-    // window.onload = formAutoSubmit;
-    window.onload = setTimeout(formAutoSubmit, 2500);
-
+    window.onload = function () {
+        window.setTimeout(function () {
+            document.form1.submit();
+        }, 2000);
+    };
 </script>
 
-<form id="login" method="post" action="<?php echo $link_login_only; ?>" onSubmit="return doLogin()">
-    <input name="dst" type="hidden" value="<?php echo $linkorig; ?>" />
-    <input name="popup" type="hidden" value="false" />
-    <input name="username" type="hidden" value="<?php echo $username; ?>"/>
-    <input name="password" type="hidden"/>
+<form id="form1" name="form1" method=POST action="<?php echo htmlspecialchars($url); ?>">
+    <input name=user value="user1" type="hidden">
+    <input name=password value="pass1" type="hidden">
+    <input name=cmd value="authenticate" type="hidden">
+    <input name=mac value="" type="hidden">
+    <input name=ip value="" type="hidden">
+    <input name=essid value="" type="hidden">
+    <input name=url value="http://www.google.com" type="hidden">
 </form>
 
 </body>
